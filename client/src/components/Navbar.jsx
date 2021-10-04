@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 const Container = styled.div`
-  height: 60px;
+  height: 80px;
 `;
 
 const Wrapper = styled.div`
@@ -54,21 +54,21 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Language>HayHay</Language>
+          <Language>EN</Language>
           <SearchContainer>
             <Input />
-            <Search style={{color:"gray", fontSize:16}}/>
+            <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>ECOM</Logo>
+          <Logo>Kinbay</Logo>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color="secondary">
-              <ShoppingCartOutlined/>
+            <Badge badgeContent={1} color="secondary">
+              <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
         </Right>
