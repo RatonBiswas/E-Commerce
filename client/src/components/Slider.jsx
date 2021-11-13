@@ -1,11 +1,14 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import styled from "styled-components";
+import { useState } from "react";
+import { sliderItems } from "../data";
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
+  overflow: hidden;
 `;
 
 const Arrow = styled.div`
@@ -75,57 +78,35 @@ const Button = styled.button`
 `;
 
 const Slider = () => {
-    const handleClick = (direction) => {
-
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left"){
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
     }
+  };
+
   return (
     <Container>
-      <Arrow direction="left" onClick={()=> handleClick('left')}>
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
-      <Wrapper>
-        <Slide bg='f5fafd'>
-          <ImgContainer>
-            <Image src="https://cdn.yourpng.com/uploads/preview/model-girls-png-images-11590815772a7t4xsjrek.png" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>Summer Sale</Title>
-            <Desc>It was an easy ride</Desc>
-            <Button>SHOW NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide bg='fbf0f4'>
-          <ImgContainer>
-            <Image src="https://cdn.yourpng.com/uploads/preview/model-girls-png-images-11590815772a7t4xsjrek.png" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>Morning Sale</Title>
-            <Desc>It was an easy ride</Desc>
-            <Button>SHOW NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide bg='fcf1ed'>
-          <ImgContainer>
-            <Image src="https://cdn.yourpng.com/uploads/preview/model-girls-png-images-11590815772a7t4xsjrek.png" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>Spring Sale</Title>
-            <Desc>It was an easy ride</Desc>
-            <Button>SHOW NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide bg='f5fafd'>
-          <ImgContainer>
-            <Image src="https://cdn.yourpng.com/uploads/preview/model-girls-png-images-11590815772a7t4xsjrek.png" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>Winter Sale</Title>
-            <Desc>It was an easy ride</Desc>
-            <Button>SHOW NOW</Button>
-          </InfoContainer>
-        </Slide>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg} key={item.id}>
+            <ImgContainer>
+              <Image src={item.img}/>
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Button>SHOW NOW</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
-      <Arrow direction="right" onClick={()=> handleClick('left')}>
+      <Arrow direction="right" onClick={() => handleClick("left")}>
         <ArrowRightOutlined />
       </Arrow>
     </Container>
